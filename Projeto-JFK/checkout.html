@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - JFK Pacotes Turísticos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f4f6f8; font-family: Verdana, Geneva, Tahoma, sans-serif; }
+        header { background-color: #fff; padding: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 30px;}
+        .brand-title { color: darkgreen; font-weight: bold; margin: 0; text-align: center;}
+        .checkout-container { max-width: 1100px; margin: 0 auto 40px auto; }
+        .card-custom { border: none; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .section-title { font-size: 1.2rem; font-weight: 600; color: #2c3e50; margin-bottom: 20px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; }
+        .payment-box { display: none; padding: 20px; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #dee2e6; margin-top: 15px; }
+        .payment-box.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        .btn-custom { background-color: #ff8c00; color: white; font-weight: bold; border: none;}
+        .btn-custom:hover { background-color: #e07b00; color: white;}
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2 class="brand-title">JFK Pacotes Turísticos</h2>
+</header>
+
+<div class="container checkout-container">
+    <main>
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <div class="card card-custom p-4 sticky-top" style="top: 20px;">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span style="color: darkgreen;">Sua Viagem</span>
+                        <i class="bi bi-airplane-engines-fill" style="color: darkgreen;"></i>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0" id="resumo-pacote-nome">Carregando pacote...</h6>
+                                <small class="text-muted">JFK Pacotes Turísticos</small>
+                            </div>
+                            <span class="text-muted" id="resumo-pacote-preco">R$ 0,00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Taxas de Agência</h6>
+                            </div>
+                            <span class="text-success">Grátis</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (BRL)</span>
+                            <strong id="resumo-total">R$ 0,00</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-7 col-lg-8">
+                <div class="card card-custom p-4">
+                    <form class="needs-validation" action="finalizacao.html" method="GET" target="_blank" novalidate>
+                        
+                        <h4 class="section-title"><i class="bi bi-person-badge me-2"></i>1. Dados do Titular</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="nomeCompleto" name="nome" placeholder="Nome Completo" required>
+                                    <label for="nomeCompleto">Nome Completo</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+                                    <label for="email">E-mail para envio dos vouchers</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="cpf" placeholder="CPF" required>
+                                    <label for="cpf">CPF</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="section-title"><i class="bi bi-geo-alt me-2"></i>2. Endereço de Cobrança</h4>
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="cep" placeholder="CEP" required>
+                                    <label for="cep">CEP</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="rua" placeholder="Endereço" required>
+                                    <label for="rua">Logradouro (Rua, Av.)</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="numero" placeholder="Número" required>
+                                    <label for="numero">Número</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="cidade" placeholder="Cidade" required>
+                                    <label for="cidade">Cidade</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="section-title"><i class="bi bi-wallet2 me-2"></i>3. Pagamento</h4>
+                        <div class="my-3">
+                            <div class="form-check form-check-inline">
+                                <input id="credito" name="metodoPagamento" type="radio" class="form-check-input" checked required onchange="togglePayment('credito')">
+                                <label class="form-check-label" for="credito"><i class="bi bi-credit-card me-1"></i>Cartão de Crédito</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input id="pix" name="metodoPagamento" type="radio" class="form-check-input" required onchange="togglePayment('pix')">
+                                <label class="form-check-label" for="pix"><i class="bi bi-qr-code-scan me-1"></i>PIX (Aprovação Imediata)</label>
+                            </div>
+                        </div>
+
+                        <div id="box-credito" class="payment-box active">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="cc-nome" placeholder="Nome no Cartão" required>
+                                        <label for="cc-nome">Nome impresso no Cartão</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="cc-numero" placeholder="Número do Cartão" required>
+                                        <label for="cc-numero">Número do Cartão</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="cc-validade" placeholder="MM/AA" required>
+                                        <label for="cc-validade">Validade (MM/AA)</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="cc-cvv" placeholder="CVV" required>
+                                        <label for="cc-cvv">Código de Segurança (CVV)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="box-pix" class="payment-box text-center">
+                            <i class="bi bi-qr-code text-success mb-2" style="font-size: 3rem;"></i>
+                            <h5>Pagamento via PIX</h5>
+                            <p class="text-muted mb-0">Ao clicar em confirmar, será gerado um QR Code ou código Copia e Cola para você garantir sua reserva na hora.</p>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-custom btn-lg" type="submit">
+                            <i class="bi bi-check-circle-fill me-2"></i>Finalizar Reserva
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // 1. CAPTURAR OS DADOS DA URL ENVIADOS PELO INDEX.HTML
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Pega o nome do pacote ou coloca um texto padrão se entrar direto
+        const pacoteNome = urlParams.get('pacote') || 'Pacote Selecionado';
+        
+        // Pega o preço, converte para número e formata para o padrão R$
+        let precoRaw = urlParams.get('preco') || '0';
+        let precoFormatado = parseFloat(precoRaw).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        // Injeta os dados na tela (Carrinho de compras lateral)
+        document.getElementById('resumo-pacote-nome').textContent = pacoteNome;
+        document.getElementById('resumo-pacote-preco').textContent = precoFormatado;
+        document.getElementById('resumo-total').textContent = precoFormatado;
+    });
+
+   // 2. ALTERNAR ENTRE CARTÃO E PIX
+    function togglePayment(method) {
+        document.getElementById('box-credito').classList.remove('active');
+        document.getElementById('box-pix').classList.remove('active');
+        
+        // Selecionamos os campos do cartão
+        const ccNome = document.getElementById('cc-nome');
+        const ccNumero = document.getElementById('cc-numero');
+        const ccValidade = document.getElementById('cc-validade');
+        const ccCvv = document.getElementById('cc-cvv');
+
+        if(method === 'credito') {
+            document.getElementById('box-credito').classList.add('active');
+            // Devolve a obrigatoriedade se escolher Cartão
+            ccNome.setAttribute('required', '');
+            ccNumero.setAttribute('required', '');
+            ccValidade.setAttribute('required', '');
+            ccCvv.setAttribute('required', '');
+        } else if (method === 'pix') {
+            document.getElementById('box-pix').classList.add('active');
+            // Remove a obrigatoriedade se escolher PIX
+            ccNome.removeAttribute('required');
+            ccNumero.removeAttribute('required');
+            ccValidade.removeAttribute('required');
+            ccCvv.removeAttribute('required');
+        }
+    }
+
+    // 3. VALIDAÇÃO DOS CAMPOS
+    (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    // O event.preventDefault() foi removido daqui para permitir 
+                    // que o formulário cumpra o action e abra a nova aba.
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

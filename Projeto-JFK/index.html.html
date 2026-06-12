@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFK Pacotes Turísticos</title>
+    <link rel="stylesheet" type="text/css" href="./css/estilo.css">
+</head>
+<body>
+    <header>
+        <div class="container_header">
+            <h2>JFK Pacotes Turísticos</h2>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Pacotes</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="banner-rotativo">
+            <div class="banner-container">
+                <img src="https://images.unsplash.com/photo-1499678329028-101435549a4e?q=80&w=1200&auto=format&fit=crop" alt="Destaque do mês">
+                
+                <div class="banner-texto">
+                    <h2>Descubra o Mundo com a JFK!</h2>
+                    <p>Prepare as malas para experiências inesquecíveis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="planos-viagens">
+            <h2 class="titulo-secao">Planos de Viagens</h2>
+
+            <div class="pacotes-grid">
+                <article class="pacote-card">
+                    <div class="img-container">
+                        <img src="imagens/rtt.jpg" alt="Praia paradisíaca no Litoral Sul">
+                    </div>
+                    <div class="pacote-info">
+                        <h3>Pacote Litoral Sul</h3>
+                        <p class="card-text">Aproveite as otimas estadias no litoral sul do Brasil.</p>
+                        <a href="#" class="btn-detalhes" id="btn-litoral">Ver detalhes</a>
+                    </div>
+                </article>
+
+                <article class="pacote-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop" alt="Cenário de montanhas">
+                    </div>
+                    <div class="pacote-info">
+                        <h3>Aventura nas Montanhas</h3>
+                        <p class="card-text">Visite as grandes montanhas e otimas paisagens na Suécia.</p>
+                        <a href="#" class="btn-detalhes" id="btn-montanha">Ver detalhes</a>
+                    </div>
+                </article>
+
+                <article class="pacote-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=400&auto=format&fit=crop" alt="Cidade histórica europeia">
+                    </div>
+                    <div class="pacote-info">
+                        <h3>Tour Internacional</h3>
+                        <p class="card-text">Faça uma viagem internacional para qual país do mundo.</p>
+                        <a href="#" class="btn-detalhes" id="btn-internacional">Ver detalhes</a>
+                    </div>  
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-litoral" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <h2>Pacote Litoral Sul</h2>
+            <div class="galeria-modal">
+                <img src="imagens/litoral sul.jpg" alt="Praia 1">
+                <img src="imagens/litoral sull.jpg" alt="Praia 2">
+                <img src="imagens/litoral sulll.jpg" alt="Praia 3">
+            </div>
+            <p class="descricao-modal">Aproveite o melhor do litoral sul do mundo fora com os melhores pacotes da JFK</p>
+            <p class="valor-modal">R$ 3.000,00</p>
+            <a href="checkout.html?pacote=Pacote%20Litoral%20Sul&preco=3000" target="_blank" class="btn-comprar">Comprar</a>
+        </div>
+    </div>
+
+    <div id="modal-montanha" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <h2>Aventura nas Montanhas</h2>
+            <div class="galeria-modal">
+                <img src="imagens/montanhas.jpg" alt="Montanha 1">
+                <img src="imagens/montanhass.jpg" alt="Montanha 2">
+                <img src="imagens/montanhasss.jpg" alt="Montanha 3">
+            </div>
+            <p class="descricao-modal">Visite as grandes montanhas e ótimas paisagens com a JFK!</p>
+            <p class="valor-modal">R$ 4.500,00</p>
+            <a href="checkout.html?pacote=Aventura%20nas%20Montanhas&preco=4500" target="_blank" class="btn-comprar">Comprar</a>
+        </div>
+    </div>
+
+    <div id="modal-internacional" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <h2>Tour Internacional</h2>
+            <div class="galeria-modal">
+                <img src="imagens/internacional.jpg" alt="Internacional 1">
+                <img src="imagens/internacionall.jpg" alt="Internacional 2">
+                <img src="imagens/internacionalll.jpg" alt="Internacional 3">
+            </div>
+            <p class="descricao-modal">Faça uma viagem inesquecível para os melhores destinos internacionais com a JFK!</p>
+            <p class="valor-modal">R$ 6.000,00</p>
+            <a href="checkout.html?pacote=Tour%20Internacional&preco=6000" target="_blank" class="btn-comprar">Comprar</a>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DO LITORAL SUL ---
+        var modalLitoral = document.getElementById("modal-litoral");
+        var btnLitoral = document.getElementById("btn-litoral");
+        var fecharLitoral = modalLitoral.querySelector(".fechar-modal");
+
+        btnLitoral.onclick = function(event) {
+            event.preventDefault(); 
+            modalLitoral.style.display = "block";
+        }
+        fecharLitoral.onclick = function() {
+            modalLitoral.style.display = "none";
+        }
+
+        // --- LÓGICA DA MONTANHA ---
+        var modalMontanha = document.getElementById("modal-montanha");
+        var btnMontanha = document.getElementById("btn-montanha");
+        var fecharMontanha = modalMontanha.querySelector(".fechar-modal");
+
+        btnMontanha.onclick = function(event) {
+            event.preventDefault(); 
+            modalMontanha.style.display = "block";
+        }
+        fecharMontanha.onclick = function() {
+            modalMontanha.style.display = "none";
+        }
+
+        // --- LÓGICA DO TOUR INTERNACIONAL ---
+        var modalInternacional = document.getElementById("modal-internacional");
+        var btnInternacional = document.getElementById("btn-internacional");
+        var fecharInternacional = modalInternacional.querySelector(".fechar-modal");
+
+        btnInternacional.onclick = function(event) {
+            event.preventDefault(); 
+            modalInternacional.style.display = "block";
+        }
+        fecharInternacional.onclick = function() {
+            modalInternacional.style.display = "none";
+        }
+
+        // --- FECHAR CLICANDO FORA (Serve para todos os modais) ---
+        window.onclick = function(event) {
+            if (event.target == modalLitoral) {
+                modalLitoral.style.display = "none";
+            }
+            if (event.target == modalMontanha) {
+                modalMontanha.style.display = "none";
+            }
+            if (event.target == modalInternacional) {
+                modalInternacional.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
